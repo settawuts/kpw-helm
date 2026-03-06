@@ -10,8 +10,8 @@ spec:
   rules:
 
   # yourdomain.com
-  - host: yourdomain.com
-    http:
+
+  - http:
       paths:
         - path: /
           pathType: Prefix
@@ -22,7 +22,7 @@ spec:
                 number: {{ .Values.kpwApp.port }}
 
   # xx.yourdomain.com → /hello
-  - host: xx.yourdomain.com
+  - host: http://kpc-candidate-test.s3-website-ap-southeast-1.amazonaws.com
     http:
       paths:
         - path: /hello 
@@ -40,13 +40,13 @@ metadata:
   name: argocd-ingress
   namespace: argocd
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   ingressClassName: nginx
   rules:
   - http:
       paths:
-      - path: /argocd
+      - path: /
         pathType: Prefix
         backend:
           service:
