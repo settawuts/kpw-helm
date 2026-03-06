@@ -10,7 +10,6 @@ spec:
     - port: {{ .Values.kpwApp.port }}
       targetPort: 80
 
-
 ---
 apiVersion: v1
 kind: Service
