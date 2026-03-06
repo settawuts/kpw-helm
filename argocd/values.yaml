@@ -1,15 +1,15 @@
-kpwApp:
-  name: nginx-website
-  namespace: website
+# kpwApp:
+#   name: nginx-website
+#   namespace: website
 
-  replicaCount: 1
+#   replicaCount: 1
 
-  image: nginx:latest
-  pullPolicy: IfNotPresent
+#   image: nginx:latest
+#   pullPolicy: IfNotPresent
 
-  service:
-    port: 80
+#   service:
+#     port: 80
 
-  ingress:
-    className: public
-    host: yourdomain.com
+#   ingress:
+#     className: public
+#     host: yourdomain.com
