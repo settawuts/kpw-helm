@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.kpwApp.name }}
-  namespace: {{ .Values.kpwApp.namespace }}
 spec:
   replicas: {{ .Values.kpwApp.replicaCount }}
   selector:
