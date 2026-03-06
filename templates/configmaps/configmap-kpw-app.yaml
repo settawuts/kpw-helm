@@ -11,9 +11,4 @@ data:
         root /usr/share/nginx/html;
         index index.html;
       }
-
-      # path /hello
-      location /hello {
-        proxy_pass {{ .Values.kpwApp.host }};
-      }
     }
