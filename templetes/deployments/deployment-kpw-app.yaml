@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.kpwApp.name }}
+  namespace: {{ .Values.kpwApp.namespace }}
+spec:
+  replicas: {{ .Values.kpwApp.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.kpwApp.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.kpwApp.name }}
+    spec:
+      containers:
+        - name: nginx
+          image: {{ .Values.kpwApp.image }}
+          ports:
+            - containerPort: {{ .Values.kpwApp.port }}
+          resources: 
+            limits:
+              cpu: {{ .Values.kpwApp.resources.limits.cpu }}
+              memory: {{ .Values.kpwApp.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.kpwApp.resources.requests.cpu }}
+              memory: {{ .Values.kpwApp.resources.requests.memory }}
+          volumeMounts:
+            - name: "{{ .Values.kpwApp.name }}-config"
+              mountPath: /etc/nginx/conf.d
+      volumes:
+        - name: "{{ .Values.kpwApp.name }}-config"
+          configMap:
+            name: "{{ .Values.kpwApp.name }}-config"
