@@ -22,7 +22,7 @@ spec:
                 number: {{ .Values.kpwApp.port }}
 
   # xx.yourdomain.com → /hello
-  - host: http://kpc-candidate-test.s3-website-ap-southeast-1.amazonaws.com
+  - host: kpc-candidate-test.s3-website-ap-southeast-1.amazonaws.com
     http:
       paths:
         - path: /hello 
@@ -32,24 +32,3 @@ spec:
               name: {{ .Values.kpwApp.name }}
               port:
                 number: {{ .Values.kpwApp.port }}
-
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: argocd-ingress
-  namespace: argocd
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-spec:
-  ingressClassName: nginx
-  rules:
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: argocd-server
-            port:
-              number: 80
