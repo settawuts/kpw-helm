@@ -20,6 +20,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: s3-hello
+            name: {{ .Values.s3proxy.name }}
             port:
-              number: {{ .Values.kpwApp.port }}
+              number: 80

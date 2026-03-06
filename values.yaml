@@ -16,3 +16,20 @@ kpwApp:
       memory: 128Mi
 
   host: http://kpc-candidate-test.s3-website-ap-southeast-1.amazonaws.com
+
+s3proxy:
+  name: s3-proxy
+  replicaCount: 1
+
+  port: 80
+
+  image: nginx:latest
+  pullPolicy: IfNotPresent
+  
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
