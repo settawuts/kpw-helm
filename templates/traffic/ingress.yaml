@@ -2,12 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "{{ .Values.kpwApp.name }}-ingress"
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      proxy_pass http://kpc-candidate-test.s3-website-ap-southeast-1.amazonaws.com;
 spec:
-  ingressClassName: nginx
+  ingressClassName: public
   rules:
   - http:
       paths:
@@ -24,6 +20,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{ .Values.kpwApp.name }}
+            name: s3-hello
             port:
               number: {{ .Values.kpwApp.port }}
