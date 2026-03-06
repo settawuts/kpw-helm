@@ -22,3 +22,4 @@ spec:
             name: {{ .Values.s3proxy.name }}
             port:
               number: 80
+              
