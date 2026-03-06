@@ -16,13 +16,16 @@ jobs:
         with:
             fetch-depth: 0
 
-      - name: Detect changed files
+      - name: Detect changed k8s yaml
         id: changes
         run: |
-            CHANGED_FILES=$(git diff --name-only HEAD^ HEAD | grep -E '\.ya?ml$' || true)
-            echo "files=$CHANGED_FILES"
+            CHANGED_FILES=$(git diff --name-only HEAD^ HEAD \
+            | grep '^templates/' \
+            | grep -E '\.ya?ml$' \
+            | tr '\n' ' ')
+        
             echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
-
+            
       - name: Deploy changed YAML to Kubernetes
         if: steps.changes.outputs.files != ''
         uses: appleboy/ssh-action@v1
