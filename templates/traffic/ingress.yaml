@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: "{{ .Values.kpwApp.name }}-ingress"
 spec:
-  ingressClassName: public
+  ingressClassName: nginx
   rules:
   - http:
       paths:
