@@ -25,6 +25,7 @@ spec:
             name: kpw-app
             port:
               number: 80
+              
       - path: /hello
         pathType: Prefix
         backend:
