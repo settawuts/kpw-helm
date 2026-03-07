@@ -21,9 +21,7 @@ spec:
           image: percona/mongodb_exporter:0.20
           args:
             - --mongodb.uri=mongodb://mongo-0.mongo.kpw-mongo.svc.cluster.local:27017,mongo-1.mongo.kpw-mongo.svc.cluster.local:27017,mongo-2.mongo.kpw-mongo.svc.cluster.local:27017/?replicaSet=rs0
-            - --collect.database
-            - --collect.collection
-            - --collect.replicaset
+
           ports:
             - containerPort: 9216
               name: metrics
