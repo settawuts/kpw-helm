@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: kpw-app
 spec:
-  replicas: kpw-app
+  replicas: 1
   selector:
     matchLabels:
       app: kpw-app
