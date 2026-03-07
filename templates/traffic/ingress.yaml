@@ -2,8 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kpw-app-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-kpw
 spec:
   ingressClassName: nginx
+
+  tls:
+  - secretName: kpw-tls
+
+
   rules:
   - http:
       paths:
