@@ -10,11 +10,11 @@ spec:
 
   tls:
     - hosts:
-        - 45.91.134.46.nip.io
+        - 18.143.49.229.nip.io
       secretName: kpw-tls     
 
   rules:
-  - host: 45.91.134.46.nip.io
+  - host: 18.143.49.229.nip.io
     http:
       paths:
 
@@ -25,7 +25,7 @@ spec:
             name: kpw-app
             port:
               number: 80
-              
+
       - path: /hello
         pathType: Prefix
         backend:
