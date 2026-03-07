@@ -34,3 +34,32 @@ spec:
             name: s3-proxy
             port:
               number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: monitoring-ingress
+  namespace: kpw-monitoring
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+
+spec:
+  ingressClassName: nginx
+
+  tls:
+  - hosts:
+      - 18.143.49.229.nip.io
+    secretName: monitoring-tls
+
+  rules:
+    - host: 18.143.49.229.nip.io
+      http:
+        paths:
+          - path: /grafana(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: grafana
+                port:
+                  number: 3000
