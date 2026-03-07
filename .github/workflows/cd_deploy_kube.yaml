@@ -19,11 +19,12 @@ jobs:
       - name: Detect changed k8s yaml
         id: changes
         run: |
-            CHANGED_FILES=$(git diff --name-only HEAD^ HEAD \
+            CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} \
             | grep '^templates/' \
             | grep -E '\.ya?ml$' \
             | tr '\n' ' ')
         
+            echo "Changed files: $CHANGED_FILES"
             echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
             
       - name: Deploy changed YAML to Kubernetes
@@ -34,10 +35,21 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/ubuntu/kube-deploy
+            cd /home/ubuntu/kpw-helm
+
+            echo "Pull latest code" 
+            git pull origin main
+
+            echo "Apply namespace first"
+            kubectl apply -f templates/namespace.yaml
 
             for file in ${{ steps.changes.outputs.files }}
             do
+              if [[ "$file" != "templates/namespace.yaml" ]]; then
+              
+              echo "Validating $file"
+              kubectl apply --dry-run=client -f $file
+
               echo "Deploying $file"
               kubectl apply -f $file
             done

@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: "{{ .Values.kpwApp.name }}-ingress"
+  name: kpw-app-ingress
 spec:
   ingressClassName: nginx
   rules:
@@ -12,13 +12,13 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{ .Values.kpwApp.name }}
+            name: kpw-app
             port:
-              number: {{ .Values.kpwApp.port }}
+              number: 80
       - path: /hello
         pathType: Prefix
         backend:
           service:
-            name: {{ .Values.s3proxy.name }}
+            name: s3-proxy
             port:
               number: 80

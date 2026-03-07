@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.s3proxy.name }}
+  name: s3-proxy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.s3proxy.name }}
+      app: s3-proxy
   template:
     metadata:
       labels:
-        app: {{ .Values.s3proxy.name }}
+        app: s3-proxy
     spec:
       containers:
       - name: nginx

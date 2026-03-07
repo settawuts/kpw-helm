@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.kpwApp.name }}
+  name: kpw-app
 spec:
   type: ClusterIP 
   selector:
-    app: {{ .Values.kpwApp.name }}
+    app: kpw-app
   ports:
-    - port: {{ .Values.kpwApp.port }}
+    - port: 80
       targetPort: 80
 
 
@@ -15,10 +15,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.s3proxy.name }}
+  name: s3-proxy
 spec:
   selector:
-    app: {{ .Values.s3proxy.name }}
+    app: s3-proxy
   ports:
   - port: 80
     targetPort: 80

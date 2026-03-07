@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.kpwApp.name }}
+  name: kpw-app
 spec:
-  replicas: {{ .Values.kpwApp.replicaCount }}
+  replicas: kpw-app
   selector:
     matchLabels:
-      app: {{ .Values.kpwApp.name }}
+      app: kpw-app
   template:
     metadata:
       labels:
-        app: {{ .Values.kpwApp.name }}
+        app: kpw-app
     spec:
       containers:
         - name: nginx
-          image: {{ .Values.kpwApp.image }}
+          image: nginx:latest
           ports:
-            - containerPort: {{ .Values.kpwApp.port }}
+            - containerPort: 80
           resources: 
             limits:
-              cpu: {{ .Values.kpwApp.resources.limits.cpu }}
-              memory: {{ .Values.kpwApp.resources.limits.memory }}
+              cpu: 200m
+              memory: 256Mi
             requests:
-              cpu: {{ .Values.kpwApp.resources.requests.cpu }}
-              memory: {{ .Values.kpwApp.resources.requests.memory }}
+              cpu: 100m
+              memory: 128Mi
           volumeMounts:
-            - name: "{{ .Values.kpwApp.name }}-config"
+            - name: kpw-app-config
               mountPath: /etc/nginx/conf.d
       volumes:
-        - name: "{{ .Values.kpwApp.name }}-config"
+        - name: kpw-app-config
           configMap:
-            name: "{{ .Values.kpwApp.name }}-config"
+            name: kpw-app-config

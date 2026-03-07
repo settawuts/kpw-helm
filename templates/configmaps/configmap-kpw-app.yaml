@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: "{{ .Values.kpwApp.name }}-config"
+  name: kpw-app-config
 data:
   default.conf: |
     server {
