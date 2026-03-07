@@ -23,10 +23,8 @@ spec:
               value: "admin"
             - name: GF_SECURITY_ADMIN_PASSWORD
               value: "Passw0rd#1234"   
-            - name: GF_SERVER_DOMAIN
-              value: "18.143.49.229.nip.io" 
             - name: GF_SERVER_ROOT_URL
-              value: "%(protocol)s://%(domain)s/grafana/" 
+              value: "https://18.143.49.229.nip.io/grafana"
             - name: GF_SERVER_SERVE_FROM_SUB_PATH
               value: "true"
           volumeMounts:
