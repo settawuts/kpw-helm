@@ -10,7 +10,7 @@ spec:
 
   tls:
     - hosts:
-        - - 1.2.3.4.nip.io
+        - 1.2.3.4.nip.io
       secretName: kpw-tls     
 
   rules:
