@@ -4,15 +4,18 @@ metadata:
   name: kpw-app-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-kpw
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
 
   tls:
-  - secretName: kpw-tls
-
+    - hosts:
+        - kpw-app.example.com 
+      secretName: kpw-tls     
 
   rules:
-  - http:
+  - host: kpw-app.example.com
+    http:
       paths:
 
       - path: /
