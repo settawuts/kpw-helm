@@ -67,6 +67,7 @@ spec:
       nodePort: 30090 
   selector:
     app: prometheus
+
 ---
 apiVersion: v1
 kind: Service
@@ -80,3 +81,10 @@ spec:
       nodePort: 30300
   selector:
     app: grafana
+    
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: advert
+  namespace: metallb-system
