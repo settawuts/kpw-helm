@@ -43,13 +43,5 @@ jobs:
             echo "Apply namespace first"
             kubectl apply -f templates/namespace.yaml
 
-            for file in ${{ steps.changes.outputs.files }}
-            do
-              if [[ "$file" != "templates/namespace.yaml" ]]; then
-              
-              echo "Validating $file"
-              kubectl apply --dry-run=client -f $file
-
-              echo "Deploying $file"
-              kubectl apply -f $file
-            done
+            echo "Deploy all manifests" 
+            kubectl apply -f templates/
