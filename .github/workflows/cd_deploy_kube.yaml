@@ -48,7 +48,7 @@ jobs:
             git pull origin main
 
             echo "Apply namespace first"
-            kubectl apply -f templates/namespace.yaml
+            kubectl apply -f templates/namespace/namespace.yaml
 
             echo "Deploy all manifests" 
             kubectl apply -f templates/
