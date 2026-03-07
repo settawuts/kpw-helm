@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kpw-app-ingress
+  namespace: kpw-app-site
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-kpw
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
