@@ -7,3 +7,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: kpw-mongo
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kpw-monitoring

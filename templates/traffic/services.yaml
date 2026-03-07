@@ -39,3 +39,44 @@ spec:
   selector:
     app: mongo
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-exporter
+  namespace: kpw-monitoring
+  labels:
+    app: mongodb-exporter
+spec:
+  ports:
+    - port: 9216
+      name: metrics
+  selector:
+    app: mongodb-exporter
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+  namespace: kpw-monitoring
+spec:
+  type: NodePort
+  ports:
+    - port: 9090
+      nodePort: 30090 
+  selector:
+    app: prometheus
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: kpw-monitoring
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      nodePort: 30300
+  selector:
+    app: grafana
