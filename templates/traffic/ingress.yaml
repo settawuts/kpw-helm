@@ -43,10 +43,12 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-kpw
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 
 spec:
   ingressClassName: nginx
-  tls:                                                       # <-- เพิ่ม
+  tls:                                       
   - hosts:
       - 18.143.49.229.nip.io
     secretName: kpw-tls      
@@ -54,16 +56,16 @@ spec:
     - host: 18.143.49.229.nip.io
       http:
         paths:
-          - path: /grafana
-            pathType: Prefix  
+          - path: /grafana(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: grafana
                 port:
                   number: 3000
 
-          - path: /prometheus
-            pathType: Prefix
+          - path: /prometheus(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: prometheus
