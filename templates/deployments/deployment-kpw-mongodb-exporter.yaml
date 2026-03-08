@@ -12,16 +12,12 @@ spec:
     metadata:
       labels:
         app: mongodb-exporter
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "9216"
     spec:
       containers:
       - name: mongodb-exporter
         image: percona/mongodb_exporter:0.40
         ports:
         - containerPort: 9216
-          name: metrics
         env:
         - name: MONGODB_URI
           value: "mongodb://mongo-0.mongo.kpw-mongo.svc.cluster.local:27017/?replicaSet=rs0"
