@@ -22,4 +22,4 @@ spec:
         - --collect-all
         env:
         - name: MONGODB_URI
-          value: "mongodb://exporter:exporter@mongo-0.mongo.kpw-mongo.svc.cluster.local:27017,mongo-1.mongo.kpw-mongo.svc.cluster.local:27017,mongo-2.mongo.kpw-mongo.svc.cluster.local:27017/?replicaSet=rs0&authSource=admin&directConnection=false"
+          value: "mongodb://exporter:exporter@mongo-1.mongo.kpw-mongo.svc.cluster.local:27017/?replicaSet=rs0&authSource=admin"
