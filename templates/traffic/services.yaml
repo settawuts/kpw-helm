@@ -96,4 +96,17 @@ spec:
   ports:
     - port: 9100
       targetPort: 9100
+      
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-pvc
+  namespace: kpw-monitoring
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
 

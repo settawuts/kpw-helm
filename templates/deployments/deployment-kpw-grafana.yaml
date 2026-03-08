@@ -38,5 +38,6 @@ spec:
               cpu: 200m
               memory: 256Mi
       volumes:
-        - name: data
-          emptyDir: {}
+        - name: grafana-storage
+          persistentVolumeClaim:
+            claimName: grafana-pvc
