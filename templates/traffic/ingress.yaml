@@ -43,6 +43,8 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-kpw
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 
 spec:
   ingressClassName: nginx
@@ -62,8 +64,8 @@ spec:
                 port:
                   number: 3000
 
-          - path: /prometheus
-            pathType: Prefix
+          - path: /prometheus(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: prometheus
