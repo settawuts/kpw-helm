@@ -21,6 +21,7 @@ spec:
             - "--storage.tsdb.path=/prometheus"
             - "--storage.tsdb.retention.time=15d"
             - "--web.external-url=/prometheus"
+            - "--web.route-prefix=/"
           ports:
             - containerPort: 9090
           volumeMounts:
