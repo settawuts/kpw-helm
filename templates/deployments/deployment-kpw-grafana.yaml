@@ -28,7 +28,7 @@ spec:
             - name: GF_SERVER_SERVE_FROM_SUB_PATH
               value: "true"
           volumeMounts:
-            - name: data
+            - name: grafana-storage
               mountPath: /var/lib/grafana
           resources:
             requests:
