@@ -15,12 +15,16 @@ spec:
     spec:
       containers:
       - name: mongodb-exporter
-        image: percona/mongodb_exporter:0.40
+        image: bitnami/mongodb-exporter:0.39.0
         ports:
         - containerPort: 9216
-        args:
-        - --collect-all
-        - --compatible-mode
         env:
         - name: MONGODB_URI
           value: "mongodb://exporter:exporter@mongo-1.mongo.kpw-mongo.svc.cluster.local:27017/?replicaSet=rs0&authSource=admin"
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
