@@ -13,3 +13,8 @@ data:
         static_configs:
           - targets: ['mongodb-exporter.kpw-monitoring.svc.cluster.local:9216']
         metrics_path: /metrics
+
+      - job_name: 'node-exporter'
+        static_configs:
+          - targets:
+            - node-exporter.kpw-monitoring.svc.cluster.local:9100
