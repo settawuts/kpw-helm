@@ -17,18 +17,11 @@ spec:
         prometheus.io/port: "9216"
     spec:
       containers:
-        - name: mongodb-exporter
-          image: percona/mongodb_exporter:0.20
-          args:
-            - --mongodb.uri=mongodb://mongo-0.mongo.kpw-mongo.svc.cluster.local:27017,mongo-1.mongo.kpw-mongo.svc.cluster.local:27017,mongo-2.mongo.kpw-mongo.svc.cluster.local:27017/?replicaSet=rs0
-
-          ports:
-            - containerPort: 9216
-              name: metrics
-          resources:
-            requests:
-              cpu: 50m
-              memory: 64Mi
-            limits:
-              cpu: 100m
-              memory: 128Mi
+      - name: mongodb-exporter
+        image: percona/mongodb_exporter:0.40
+        ports:
+        - containerPort: 9216
+          name: metrics
+        env:
+        - name: MONGODB_URI
+          value: "mongodb://mongo-0.mongo.kpw-mongo.svc.cluster.local:27017/?replicaSet=rs0"
